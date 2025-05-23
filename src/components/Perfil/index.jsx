@@ -13,4 +13,3 @@ const Perfil = ({nomeDoUsuario}) => {
 }
 
 export default Perfil
-
