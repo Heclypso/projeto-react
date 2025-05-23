@@ -1,16 +1,32 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Formulario = () => {
-    let [materiaA, setMateriaA] = useState(0)
-    let [materiaB, setMateriaB] = useState(0)
-    let [materiaC, setMateriaC] = useState(0)
+    const [materiaA, setMateriaA] = useState(0)
+    const [materiaB, setMateriaB] = useState(0)
+    const [materiaC, setMateriaC] = useState(0)
 
-    let [nome, setNome] = useState('')
+    const [nome, setNome] = useState('')
+
+    useEffect(() => {
+        console.log("O componente foi montado")
+
+        return (() => {
+            console.log("O componente foi desmontado")
+        })
+    }, []) 
+
+    useEffect(() => {
+        console.log("O estado nome mudou")
+    }, [nome]) 
+
+    useEffect(() => {
+        console.log("Matéria A mudou para: " + materiaA)
+    }, [materiaA])
 
     const alteraNome = (evento) => {
         
         setNome(estadoAnterior => {
-            console.log(estadoAnterior)
+            // console.log(estadoAnterior)
             return evento.target.value
         })
     }
@@ -21,11 +37,11 @@ const Formulario = () => {
 
         if (media >= 7 ) {
             return (
-                <p>Olá {nome}, foi aprovado</p>
+                <p>Olá {nome}, você foi aprovado</p>
             )
         } else {
             return (       
-                <p>Olá {nome}, foi reprovado</p>
+                <p>Olá {nome}, você foi reprovado</p>
             )
         }
     }
